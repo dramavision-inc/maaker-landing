@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maaker.AI — 一人公司CEO小马哥</title>
+  <meta name="description" content="一个人类老板 + 全AI员工的一人公司。独立开发者，全职 Vibe Coder。">
+  <meta property="og:title" content="Maaker.AI — 一人公司CEO小马哥">
+  <meta property="og:description" content="一个人类老板 + 全AI员工的一人公司">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://maaker.ai">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwindcss.config = {
+      theme: {
+        extend: {
+          colors: {
+            teal: {
+              500: '#14B8A6',
+              600: '#0D9488',
+              700: '#0F766E',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+    body {
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 手绘涂鸦风格的装饰线 */
+    .doodle-line {
+      background-image: url("data:image/svg+xml,%3Csvg width='200' height='8' viewBox='0 0 200 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 5.5C20 2 40 7 60 4C80 1 100 6 120 3.5C140 1 160 6 199 3' stroke='%230D9488' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      height: 8px;
+    }
+
+    /* 淡入动画 */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 手绘圆圈装饰 */
+    .doodle-circle {
+      position: relative;
+    }
+    .doodle-circle::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border: 2px solid #0D9488;
+      border-radius: 50%;
+      opacity: 0.3;
+      transform: rotate(-3deg);
+    }
+
+    /* 社交链接 hover */
+    .social-link {
+      transition: all 0.2s ease;
+    }
+    .social-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    /* CTA 按钮 */
+    .cta-btn {
+      background: linear-gradient(135deg, #0D9488, #14B8A6);
+      transition: all 0.2s ease;
+    }
+    .cta-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(13, 148, 136, 0.3);
+    }
+    .cta-btn:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900">
+
+  <main class="max-w-xl mx-auto px-6 pb-28 md:pb-12">
+
+    <!-- Hero -->
+    <section class="pt-16 pb-12 text-center">
+      <!-- 头像 -->
+      <div class="inline-block doodle-circle mb-6">
+        <div class="w-24 h-24 rounded-full bg-gray-100 overflow-hidden">
+          <!-- 替换为真实头像 -->
+          <svg class="w-full h-full" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="96" height="96" fill="#F3F4F6"/>
+            <circle cx="48" cy="36" r="14" stroke="#111" stroke-width="2" fill="none"/>
+            <path d="M24 78C24 62 36 52 48 52C60 52 72 62 72 78" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <circle cx="43" cy="34" r="2" fill="#111"/>
+            <circle cx="53" cy="34" r="2" fill="#111"/>
+            <path d="M44 40C44 40 46 43 48 43C50 43 52 40 52 40" stroke="#111" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 品牌名 -->
+      <h1 class="text-2xl font-bold tracking-tight mb-2">
+        Maaker<span class="text-teal-600">.AI</span>
+      </h1>
+
+      <!-- 一句话介绍 -->
+      <p class="text-lg text-gray-600 mb-3">
+        一个人类老板 + 全AI员工的一人公司
+      </p>
+
+      <!-- 标签 -->
+      <div class="flex items-center justify-center gap-2 text-sm text-gray-400">
+        <span>独立开发者</span>
+        <span>·</span>
+        <span>全职 Vibe Coder</span>
+      </div>
+    </section>
+
+    <!-- 涂鸦分割线 -->
+    <div class="doodle-line my-4"></div>
+
+    <!-- 关于我 -->
+    <section class="py-12 fade-up">
+      <h2 class="text-lg font-bold mb-6 flex items-center gap-2">
+        <!-- 手绘箭头 -->
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-teal-600">
+          <path d="M4 12C8 12 12 8 16 10C18 11 19 13 20 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M17 9L20 12L17 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        关于我
+      </h2>
+
+      <div class="space-y-4 text-gray-600 leading-relaxed">
+        <p>
+          我叫小马哥，去年辞掉工作，开始全职做独立开发。
+        </p>
+        <p>
+          没有融资，没有团队，就我一个人。但我有 5 个 AI 员工——写代码、做设计、搞运营、测试、code review，全是 AI 在干。
+        </p>
+        <p>
+          我专注做"小而美"的工具类 App。不追求做大，就想把每个小工具做到让人用着舒服。
+        </p>
+        <p>
+          如果你对 AI 编程、独立开发、一人公司这些话题感兴趣，欢迎关注我，我会持续分享真实的开发日常和踩坑经验。
+        </p>
+      </div>
+
+      <!-- 涂鸦装饰：小星星 -->
+      <div class="mt-8 flex justify-center gap-6 opacity-20">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2L10 18M2 10L18 10M4 4L16 16M16 4L4 16" stroke="#0D9488" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 1L8 15M1 8L15 8" stroke="#0D9488" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2L10 18M2 10L18 10M4 4L16 16M16 4L4 16" stroke="#0D9488" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- 涂鸦分割线 -->
+    <div class="doodle-line my-4"></div>
+
+    <!-- 联系方式 -->
+    <section class="py-12 fade-up">
+      <h2 class="text-lg font-bold mb-6 flex items-center gap-2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-teal-600">
+          <path d="M4 12C8 12 12 8 16 10C18 11 19 13 20 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M17 9L20 12L17 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        找到我
+      </h2>
+
+      <div class="space-y-3">
+        <!-- 小红书 -->
+        <a href="https://www.xiaohongshu.com/user/profile/MaakerAI" target="_blank" rel="noopener"
+           class="social-link flex items-center gap-4 p-4 rounded-2xl border border-gray-100 bg-white">
+          <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M3 5H9L10 3H14L13 5H17V17H3V5Z" fill="#FF2442" opacity="0.9"/>
+              <path d="M7 9V13M11 9V13M9 11H7M13 11H11" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="font-medium text-sm">小红书</div>
+            <div class="text-xs text-gray-400">@一人公司CEO小马哥</div>
+          </div>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="text-gray-300 flex-shrink-0">
+            <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <!-- 微信 -->
+        <div class="social-link flex items-center gap-4 p-4 rounded-2xl border border-gray-100 bg-white">
+          <div class="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center flex-shrink-0">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M7.5 4C4.46 4 2 6.12 2 8.75C2 10.28 2.87 11.63 4.2 12.45L3.7 14.2L5.8 13.1C6.33 13.26 6.9 13.36 7.5 13.36" fill="#07C160" opacity="0.6"/>
+              <path d="M12.5 7C9.86 7 7.7 8.84 7.7 11.1C7.7 13.36 9.86 15.2 12.5 15.2C13 15.2 13.5 15.13 13.95 15L15.7 16L15.3 14.5C16.4 13.77 17.1 12.5 17.1 11.1C17.1 8.84 15.14 7 12.5 7Z" fill="#07C160"/>
+            </svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="font-medium text-sm">微信</div>
+            <div class="text-xs text-gray-400">MaakerAI</div>
+          </div>
+          <button onclick="copyWechat()" class="text-xs text-teal-600 bg-teal-50 px-3 py-1 rounded-full flex-shrink-0 hover:bg-teal-100 transition-colors">
+            复制
+          </button>
+        </div>
+
+        <!-- 邮箱 -->
+        <a href="mailto:hello@maaker.ai"
+           class="social-link flex items-center gap-4 p-4 rounded-2xl border border-gray-100 bg-white">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <rect x="2" y="4" width="16" height="12" rx="2" stroke="#3B82F6" stroke-width="1.5" fill="none"/>
+              <path d="M2 6L10 11L18 6" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="font-medium text-sm">邮箱</div>
+            <div class="text-xs text-gray-400">hello@maaker.ai</div>
+          </div>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="text-gray-300 flex-shrink-0">
+            <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- 涂鸦分割线 -->
+    <div class="doodle-line my-4"></div>
+
+    <!-- 进群引导 (桌面端) -->
+    <section class="py-12 fade-up hidden md:block">
+      <div class="text-center p-8 rounded-3xl bg-gradient-to-b from-teal-50/50 to-white border border-teal-100/50">
+        <div class="text-2xl mb-2">👋</div>
+        <h2 class="text-lg font-bold mb-2">加入 AI 独立开发营</h2>
+        <p class="text-sm text-gray-500 mb-6">
+          和一群用 AI 做独立开发的人一起交流、互相学习
+        </p>
+        <a href="https://www.xiaohongshu.com/user/profile/MaakerAI" target="_blank" rel="noopener"
+           class="cta-btn inline-block text-white text-sm font-medium px-8 py-3 rounded-full">
+          去小红书找我
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-xs text-gray-300 fade-up">
+      <p>humAn + AI = Maaker</p>
+    </footer>
+  </main>
+
+  <!-- 移动端固定底栏 -->
+  <div class="fixed bottom-0 left-0 right-0 md:hidden bg-white/80 backdrop-blur-lg border-t border-gray-100 px-6 py-3 safe-area-bottom">
+    <a href="https://www.xiaohongshu.com/user/profile/MaakerAI" target="_blank" rel="noopener"
+       class="cta-btn block text-center text-white text-sm font-medium py-3 rounded-full">
+      加入 AI 独立开发营 👋
+    </a>
+  </div>
+
+  <!-- 复制提示 -->
+  <div id="toast" class="fixed top-4 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-sm px-4 py-2 rounded-full opacity-0 transition-opacity duration-300 pointer-events-none z-50">
+    已复制微信号
+  </div>
+
+  <script>
+    // 滚动淡入
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // 复制微信号
+    function copyWechat() {
+      navigator.clipboard.writeText('MaakerAI').then(() => {
+        const toast = document.getElementById('toast');
+        toast.style.opacity = '1';
+        setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
