@@ -1,0 +1,6 @@
+name = "maaker-landing"
+compatibility_date = "2024-09-23"
+
+[[kv_namespaces]]
+binding = "SUBSCRIBERS"
+id = "2ce5a721b482469197ddf12852761c27"

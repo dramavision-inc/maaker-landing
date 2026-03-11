@@ -188,7 +188,7 @@
 
       <div class="space-y-3">
         <!-- 小红书 -->
-        <a href="https://www.xiaohongshu.com/user/profile/MaakerAI" target="_blank" rel="noopener"
+        <a href="https://www.xiaohongshu.com/user/profile/60994e9d000000000100137c" target="_blank" rel="noopener"
            class="social-link flex items-center gap-4 p-4 rounded-2xl border border-gray-100 bg-white">
           <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -245,6 +245,36 @@
     <!-- 涂鸦分割线 -->
     <div class="doodle-line my-4"></div>
 
+    <!-- AI 日报订阅 -->
+    <section class="py-12 fade-up">
+      <h2 class="text-lg font-bold mb-6 flex items-center gap-2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-teal-600">
+          <path d="M4 12C8 12 12 8 16 10C18 11 19 13 20 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M17 9L20 12L17 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        AI 日报
+      </h2>
+
+      <div class="p-6 rounded-2xl border border-gray-100 bg-white">
+        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+          我每天追踪 AI 领域最新动态，用 AI 自动整理成中文摘要。涵盖 AI 工具、开源项目、大模型进展、开发者生态等，每天一封邮件，不错过重要资讯。
+        </p>
+        <form id="subscribe-form" class="flex gap-2">
+          <input type="email" id="subscribe-email" placeholder="输入邮箱，免费订阅"
+                 class="flex-1 min-w-0 px-4 py-2.5 text-sm border border-gray-200 rounded-full focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-colors"
+                 required>
+          <button type="submit" id="subscribe-btn"
+                  class="cta-btn text-white text-sm font-medium px-6 py-2.5 rounded-full flex-shrink-0">
+            订阅
+          </button>
+        </form>
+        <p id="subscribe-msg" class="text-xs text-gray-400 mt-3 hidden"></p>
+      </div>
+    </section>
+
+    <!-- 涂鸦分割线 -->
+    <div class="doodle-line my-4"></div>
+
     <!-- 进群引导 (桌面端) -->
     <section class="py-12 fade-up hidden md:block">
       <div class="text-center p-8 rounded-3xl bg-gradient-to-b from-teal-50/50 to-white border border-teal-100/50">
@@ -253,7 +283,7 @@
         <p class="text-sm text-gray-500 mb-6">
           和一群用 AI 做独立开发的人一起交流、互相学习
         </p>
-        <a href="https://www.xiaohongshu.com/user/profile/MaakerAI" target="_blank" rel="noopener"
+        <a href="https://www.xiaohongshu.com/user/profile/60994e9d000000000100137c" target="_blank" rel="noopener"
            class="cta-btn inline-block text-white text-sm font-medium px-8 py-3 rounded-full">
           去小红书找我
         </a>
@@ -268,7 +298,7 @@
 
   <!-- 移动端固定底栏 -->
   <div class="fixed bottom-0 left-0 right-0 md:hidden bg-white/80 backdrop-blur-lg border-t border-gray-100 px-6 py-3 safe-area-bottom">
-    <a href="https://www.xiaohongshu.com/user/profile/MaakerAI" target="_blank" rel="noopener"
+    <a href="https://www.xiaohongshu.com/user/profile/60994e9d000000000100137c" target="_blank" rel="noopener"
        class="cta-btn block text-center text-white text-sm font-medium py-3 rounded-full">
       加入 AI 独立开发营 👋
     </a>
@@ -290,6 +320,43 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // 订阅
+    document.getElementById('subscribe-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('subscribe-email').value.trim();
+      const btn = document.getElementById('subscribe-btn');
+      const msg = document.getElementById('subscribe-msg');
+
+      btn.disabled = true;
+      btn.textContent = '提交中...';
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        const data = await res.json();
+
+        msg.classList.remove('hidden');
+        if (res.ok) {
+          msg.textContent = data.message || '订阅成功！';
+          msg.className = 'text-xs text-teal-600 mt-3';
+          document.getElementById('subscribe-email').value = '';
+        } else {
+          msg.textContent = data.error || '提交失败，请重试';
+          msg.className = 'text-xs text-red-500 mt-3';
+        }
+      } catch {
+        msg.classList.remove('hidden');
+        msg.textContent = '网络错误，请稍后重试';
+        msg.className = 'text-xs text-red-500 mt-3';
+      }
+
+      btn.disabled = false;
+      btn.textContent = '订阅';
+    });
 
     // 复制微信号
     function copyWechat() {
