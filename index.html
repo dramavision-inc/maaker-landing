@@ -100,15 +100,7 @@
       <!-- 头像 -->
       <div class="inline-block doodle-circle mb-6">
         <div class="w-24 h-24 rounded-full bg-gray-100 overflow-hidden">
-          <!-- 替换为真实头像 -->
-          <svg class="w-full h-full" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="96" height="96" fill="#F3F4F6"/>
-            <circle cx="48" cy="36" r="14" stroke="#111" stroke-width="2" fill="none"/>
-            <path d="M24 78C24 62 36 52 48 52C60 52 72 62 72 78" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <circle cx="43" cy="34" r="2" fill="#111"/>
-            <circle cx="53" cy="34" r="2" fill="#111"/>
-            <path d="M44 40C44 40 46 43 48 43C50 43 52 40 52 40" stroke="#111" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          </svg>
+          <img src="avatar.png" alt="小马哥" class="w-full h-full object-cover">
         </div>
       </div>
 
@@ -275,18 +267,20 @@
     <!-- 涂鸦分割线 -->
     <div class="doodle-line my-4"></div>
 
-    <!-- 进群引导 (桌面端) -->
-    <section class="py-12 fade-up hidden md:block">
+    <!-- 加微信 -->
+    <section id="wechat-section" class="py-12 fade-up">
+      <h2 class="text-lg font-bold mb-6 flex items-center gap-2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-teal-600">
+          <path d="M4 12C8 12 12 8 16 10C18 11 19 13 20 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M17 9L20 12L17 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        加我微信
+      </h2>
       <div class="text-center p-8 rounded-3xl bg-gradient-to-b from-teal-50/50 to-white border border-teal-100/50">
-        <div class="text-2xl mb-2">👋</div>
-        <h2 class="text-lg font-bold mb-2">加入 AI 独立开发营</h2>
         <p class="text-sm text-gray-500 mb-6">
           和一群用 AI 做独立开发的人一起交流、互相学习
         </p>
-        <a href="https://www.xiaohongshu.com/user/profile/60994e9d000000000100137c" target="_blank" rel="noopener"
-           class="cta-btn inline-block text-white text-sm font-medium px-8 py-3 rounded-full">
-          去小红书找我
-        </a>
+        <img src="wechat-qr.jpg" alt="微信二维码" class="w-52 mx-auto rounded-2xl">
       </div>
     </section>
 
@@ -298,9 +292,9 @@
 
   <!-- 移动端固定底栏 -->
   <div class="fixed bottom-0 left-0 right-0 md:hidden bg-white/80 backdrop-blur-lg border-t border-gray-100 px-6 py-3 safe-area-bottom">
-    <a href="https://www.xiaohongshu.com/user/profile/60994e9d000000000100137c" target="_blank" rel="noopener"
+    <a href="#wechat-section" onclick="document.getElementById('wechat-section').scrollIntoView({behavior:'smooth'});return false;"
        class="cta-btn block text-center text-white text-sm font-medium py-3 rounded-full">
-      加入 AI 独立开发营 👋
+      加我微信，一起交流 👋
     </a>
   </div>
 
