@@ -372,7 +372,9 @@
     // ============================================================
     // 配置
     // ============================================================
-    const API_URL = "http://localhost:8000";
+    const API_URL = window.location.hostname === 'localhost'
+      ? 'http://localhost:8000'
+      : 'https://api.maaker.cn/diagrams';
     let currentType = "flowchart";
 
     // ============================================================
@@ -576,25 +578,44 @@
       hideError();
       showLoading();
 
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 60000);
+
       try {
         const res = await fetch(`${API_URL}/api/generate`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ type, data, title }),
+          signal: controller.signal,
         });
+        clearTimeout(timeout);
 
         hideLoading();
 
         if (!res.ok) {
-          const errText = await res.text();
-          showError(errText || '生成失败，请重试');
+          let errMsg = '生成失败，请重试';
+          try {
+            const errData = await res.json();
+            errMsg = errData.detail || errData.message || errMsg;
+          } catch { errMsg = await res.text() || errMsg; }
+          showError(errMsg);
           return;
         }
 
         const result = await res.json();
 
-        // 显示 SVG 预览
-        document.getElementById('preview').innerHTML = result.svg;
+        // 净化 SVG 防止 XSS
+        const preview = document.getElementById('preview');
+        const parser = new DOMParser();
+        const svgDoc = parser.parseFromString(result.svg, 'image/svg+xml');
+        svgDoc.querySelectorAll('script').forEach(el => el.remove());
+        svgDoc.querySelectorAll('*').forEach(el => {
+          [...el.attributes].forEach(attr => {
+            if (attr.name.startsWith('on')) el.removeAttribute(attr.name);
+          });
+        });
+        preview.innerHTML = '';
+        preview.appendChild(document.importNode(svgDoc.documentElement, true));
 
         // 显示下载按钮
         document.getElementById('download-section').classList.remove('hidden');
@@ -603,8 +624,13 @@
         window._lastResult = result;
 
       } catch (err) {
+        clearTimeout(timeout);
         hideLoading();
-        showError('网络错误，请检查连接后重试');
+        if (err.name === 'AbortError') {
+          showError('请求超时（60秒），请重试');
+        } else {
+          showError('网络错误，请检查连接后重试');
+        }
       }
     }
 
