@@ -54,39 +54,79 @@ def generate(req: GenerateRequest):
 
         try:
             if req.type == "flowchart":
+                # Normalize nodes: accept ["A", "B"] or [{"label": "A"}, ...]
+                raw_nodes = req.data.get("nodes", [])
+                nodes = [{"label": n} if isinstance(n, str) else n for n in raw_nodes]
+                # Normalize edges: accept {"from": "A", "to": "B"} as-is
+                edges = req.data.get("edges", [])
                 create_flowchart(
-                    nodes=req.data.get("nodes", []),
-                    edges=req.data.get("edges", []),
+                    nodes=nodes,
+                    edges=edges,
                     direction=req.data.get("direction", "LR"),
                     title=req.title,
                     output_path=output_path,
                     theme=req.theme,
                 )
             elif req.type == "architecture":
+                # Normalize layers: components can be strings or dicts
+                raw_layers = req.data.get("layers", [])
+                layers = []
+                for layer in raw_layers:
+                    comps = layer.get("components", [])
+                    normalized_comps = [{"label": c} if isinstance(c, str) else c for c in comps]
+                    layers.append({**layer, "components": normalized_comps})
                 create_architecture_diagram(
-                    layers=req.data.get("layers", []),
+                    layers=layers,
                     connections=req.data.get("connections"),
                     output_path=output_path,
                     theme=req.theme,
                 )
             elif req.type == "sequence":
+                # Normalize messages: "message" → "label"
+                raw_msgs = req.data.get("messages", [])
+                messages = []
+                for m in raw_msgs:
+                    msg = dict(m)
+                    if "message" in msg and "label" not in msg:
+                        msg["label"] = msg.pop("message")
+                    messages.append(msg)
                 create_sequence_diagram(
                     participants=req.data.get("participants", []),
-                    messages=req.data.get("messages", []),
+                    messages=messages,
                     title=req.title,
                     output_path=output_path,
                     theme=req.theme,
                 )
             elif req.type == "mindmap":
+                # Normalize root: accept string + items list → nested tree
+                raw_root = req.data.get("root", {"label": "Root"})
+                if isinstance(raw_root, str):
+                    root = {"label": raw_root, "children": []}
+                    # Convert flat items like ["ML > 监督学习", "ML > 无监督学习"] to tree
+                    for item in req.data.get("items", []):
+                        parts = [p.strip() for p in item.split(">")]
+                        node = root
+                        for part in parts:
+                            existing = next((c for c in node.get("children", []) if c["label"] == part), None)
+                            if existing:
+                                node = existing
+                            else:
+                                child = {"label": part, "children": []}
+                                node.setdefault("children", []).append(child)
+                                node = child
+                else:
+                    root = raw_root
                 create_mindmap_diagram(
-                    root=req.data.get("root", {"label": "Root"}),
+                    root=root,
                     title=req.title,
                     output_path=output_path,
                     theme=req.theme,
                 )
             elif req.type == "mermaid":
+                # Accept both "mermaid" and "code" field names
+                mermaid_code = req.data.get("mermaid") or req.data.get("code", "")
                 import_mermaid(
-                    mermaid=req.data.get("mermaid", ""),
+                    mermaid=mermaid_code,
                     output_path=output_path,
                     theme=req.theme,
                 )
