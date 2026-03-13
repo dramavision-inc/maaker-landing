@@ -168,6 +168,67 @@
     <!-- 涂鸦分割线 -->
     <div class="doodle-line my-4"></div>
 
+    <!-- 当前在做什么 (Now) -->
+    <section class="py-12 fade-up">
+      <h2 class="text-lg font-bold mb-6 flex items-center gap-2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-teal-600">
+          <path d="M4 12C8 12 12 8 16 10C18 11 19 13 20 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M17 9L20 12L17 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        现在在做什么
+      </h2>
+      <div class="p-5 rounded-2xl border border-teal-100 bg-teal-50/30">
+        <p class="text-sm text-gray-600 leading-relaxed">
+          每天维护 AI 日报，用 AI 自动抓取 + 整理全球 AI 圈最新动态。同时在探索下一款工具类 App 的方向，目标是做"小而美"、解决一个具体痛点的产品。
+        </p>
+        <p class="text-xs text-gray-400 mt-3">更新于 2026 年 3 月</p>
+      </div>
+    </section>
+
+    <!-- 涂鸦分割线 -->
+    <div class="doodle-line my-4"></div>
+
+    <!-- 成长 Timeline -->
+    <section class="py-12 fade-up">
+      <h2 class="text-lg font-bold mb-6 flex items-center gap-2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-teal-600">
+          <path d="M4 12C8 12 12 8 16 10C18 11 19 13 20 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M17 9L20 12L17 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        成长轨迹
+      </h2>
+      <div class="relative pl-6 border-l-2 border-teal-200 space-y-6">
+        <div class="relative">
+          <div class="absolute -left-[25px] w-3 h-3 rounded-full bg-teal-500 border-2 border-white"></div>
+          <p class="text-sm font-medium text-gray-800">2025.12 — 辞职，全职独立开发</p>
+          <p class="text-xs text-gray-400 mt-1">下定决心，一个人 + AI 开干</p>
+        </div>
+        <div class="relative">
+          <div class="absolute -left-[25px] w-3 h-3 rounded-full bg-teal-500 border-2 border-white"></div>
+          <p class="text-sm font-medium text-gray-800">2026.01 — 开始在小红书分享</p>
+          <p class="text-xs text-gray-400 mt-1">记录一人公司的真实日常</p>
+        </div>
+        <div class="relative">
+          <div class="absolute -left-[25px] w-3 h-3 rounded-full bg-teal-500 border-2 border-white"></div>
+          <p class="text-sm font-medium text-gray-800">2026.02 — 第一篇千赞笔记</p>
+          <p class="text-xs text-gray-400 mt-1">"一个人 + 5个AI员工" 引发共鸣</p>
+        </div>
+        <div class="relative">
+          <div class="absolute -left-[25px] w-3 h-3 rounded-full bg-teal-400 border-2 border-white"></div>
+          <p class="text-sm font-medium text-gray-800">2026.03 — 上线 maaker.ai + AI 日报</p>
+          <p class="text-xs text-gray-400 mt-1">品牌官网上线，AI 日报开始每日推送</p>
+        </div>
+        <div class="relative">
+          <div class="absolute -left-[25px] w-3 h-3 rounded-full bg-gray-300 border-2 border-white"></div>
+          <p class="text-sm font-medium text-gray-400">接下来 — 第一款 App 上线</p>
+          <p class="text-xs text-gray-300 mt-1">敬请期待...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 涂鸦分割线 -->
+    <div class="doodle-line my-4"></div>
+
     <!-- 联系方式 -->
     <section class="py-12 fade-up">
       <h2 class="text-lg font-bold mb-6 flex items-center gap-2">
@@ -251,6 +312,7 @@
         <p class="text-gray-600 text-sm leading-relaxed mb-4">
           我每天追踪 AI 领域最新动态，用 AI 自动整理成中文摘要。涵盖 AI 工具、开源项目、大模型进展、开发者生态等，每天一封邮件，不错过重要资讯。
         </p>
+        <p id="subscriber-count" class="text-xs text-teal-600 mb-4 hidden"></p>
         <form id="subscribe-form" class="flex gap-2">
           <input type="email" id="subscribe-email" placeholder="输入邮箱，免费订阅"
                  class="flex-1 min-w-0 px-4 py-2.5 text-sm border border-gray-200 rounded-full focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-colors"
@@ -282,6 +344,41 @@
         </p>
         <img src="wechat-qr.jpg" alt="微信二维码" class="w-52 mx-auto rounded-2xl">
       </div>
+    </section>
+
+    <!-- 涂鸦分割线 -->
+    <div class="doodle-line my-4"></div>
+
+    <!-- 最近内容 -->
+    <section class="py-12 fade-up">
+      <h2 class="text-lg font-bold mb-6 flex items-center gap-2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-teal-600">
+          <path d="M4 12C8 12 12 8 16 10C18 11 19 13 20 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M17 9L20 12L17 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        最近分享
+      </h2>
+      <div class="space-y-3" id="recent-posts">
+        <a href="https://www.xiaohongshu.com/user/profile/60994e9d000000000100137c" target="_blank" rel="noopener"
+           class="block p-4 rounded-2xl border border-gray-100 hover:border-teal-200 transition-colors">
+          <p class="text-sm font-medium text-gray-800">一个人 + 5个AI员工，这是我公司的第一个月</p>
+          <p class="text-xs text-gray-400 mt-1">1064 赞 · 产品/开发思考</p>
+        </a>
+        <a href="https://www.xiaohongshu.com/user/profile/60994e9d000000000100137c" target="_blank" rel="noopener"
+           class="block p-4 rounded-2xl border border-gray-100 hover:border-teal-200 transition-colors">
+          <p class="text-sm font-medium text-gray-800">AI一人公司月烧多少？穷鬼vs氪金版</p>
+          <p class="text-xs text-gray-400 mt-1">AI 编程心得</p>
+        </a>
+        <a href="https://www.xiaohongshu.com/user/profile/60994e9d000000000100137c" target="_blank" rel="noopener"
+           class="block p-4 rounded-2xl border border-gray-100 hover:border-teal-200 transition-colors">
+          <p class="text-sm font-medium text-gray-800">一人公司火了，我已经干了三个月，说点真话</p>
+          <p class="text-xs text-gray-400 mt-1">产品/开发思考</p>
+        </a>
+      </div>
+      <a href="https://www.xiaohongshu.com/user/profile/60994e9d000000000100137c" target="_blank" rel="noopener"
+         class="block text-center text-sm text-teal-600 mt-4 hover:underline">
+        去小红书看更多 →
+      </a>
     </section>
 
     <!-- Footer -->
@@ -351,6 +448,18 @@
       btn.disabled = false;
       btn.textContent = '订阅';
     });
+
+    // 获取订阅人数
+    fetch('/api/subscriber-count')
+      .then(r => r.json())
+      .then(data => {
+        if (data.count > 0) {
+          const el = document.getElementById('subscriber-count');
+          el.textContent = `已有 ${data.count} 人订阅`;
+          el.classList.remove('hidden');
+        }
+      })
+      .catch(() => {});
 
     // 复制微信号
     function copyWechat() {
