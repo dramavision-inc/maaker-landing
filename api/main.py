@@ -24,9 +24,8 @@ app.add_middleware(
         "https://diagrams.maaker.ai",
         "http://localhost:8080",
     ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["POST", "GET", "OPTIONS"],
+    allow_headers=["Content-Type"],
 )
 
 
