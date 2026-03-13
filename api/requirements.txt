@@ -1,3 +1,3 @@
 fastapi>=0.115.0
 uvicorn>=0.34.0
-maaker-excalidraw-mcp>=0.5.1
+maaker-excalidraw-mcp @ git+https://github.com/maaker-ai/excalidraw-mcp.git@main
