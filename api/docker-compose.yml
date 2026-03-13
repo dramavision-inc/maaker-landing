@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  diagrams-api:
+    build: .
+    ports:
+      - "8100:8000"
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
